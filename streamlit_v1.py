@@ -30,15 +30,17 @@ else:
 
             if question:
                 # Optimized Prompt
-                prompt = """
-                Your are an intelligence AI and answer the question as detailed as possible from the provided context, make sure to provide all the details, if the answer is not in
-                provided context just say, "answer is not available in the context", don't provide the wrong answer\n\n
-                Extracts and structures product dimension data from technical drawings, including part diagrams and engineering schematics. Your task is to analyze the given input (which may be text or an image) and extract key product dimensions accurately.\n\n
-                Context:\n {context}?\n
-                Question: \n{question}\n
-            
+                prompt = f"""You are an expert at extracting information from technical specification sheets.
+                Your goal is to answer the user's question accurately and concisely using ONLY the information provided in the document.
+                If the answer is not explicitly in the document, state that you cannot answer the question.
+
+                Document Text:
+                {text}
+
+                User Question: {question}
+
                 Answer:
-                    """
+                """
 
                 # Generate Response
                 response = model.generate_content(prompt)
